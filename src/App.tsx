@@ -14,7 +14,22 @@ const App = () => {
     const numbers = "0123456789";
     const symbols = "!@#$%^&*()";
 
+    if (length === 0) {
+      alert("Password length must be higher than 0");
+      return;
+    }
+
     let chars = "";
+    if (
+      !includeUppercase &&
+      !includeLowercase &&
+      !includeNumbers &&
+      !includeSymbols
+    ) {
+      alert("You must select one of the following options to include");
+      return;
+    }
+
     if (includeUppercase) chars += uppercase;
     if (includeLowercase) chars += lowercase;
     if (includeNumbers) chars += numbers;
@@ -72,7 +87,7 @@ const App = () => {
               onChange={(e) => setPassword(e.target.value)}
               className="border border-gray-300 rounded-lg pl-4 pr-6 py-2 w-full"
               disabled
-              placeholder="Enter your password here"
+              placeholder="Your generated password here"
             />
             <button
               onClick={copyToClipboard}
